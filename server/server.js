@@ -4,7 +4,6 @@ const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser'); //takes JSON and convert into an object
 const { ObjectID } = require('mongodb');
-const bcrypt = require('bcryptjs');
 
 const { mongoose } = require('./db/mongoose');
 const { Todo } = require('./models/todo');
@@ -127,7 +126,7 @@ app.post('/users/login', (req, res) => {
             res.header('x-auth', token).send(user);
         })
     }).catch((e) => {
-        res.send(400).send('Wrong user/password combination');
+        res.status(400).send('Wrong user/password combination');
     }) 
 })
 
